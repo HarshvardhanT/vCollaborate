@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>    
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        .rooms {
+            display: flex;
+            justify-content: center;
+            margin-top: 250px;
+            background-color: #f7f7f7; /* Light gray background for contrast */
+            padding: 20px;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .rooms .text-center {
+            margin-bottom: 20px;
+        }
+
+        .rooms .w-full {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px; /* Space between the room cards */
+        }
+
+        .rooms .w-full > div {
+            max-width: 100%; /* Ensure responsiveness */
+            margin-bottom: 16px; /* Space below each room card */
+        }
+
+        .rooms .p-4 {
+            background-color: #ffffff; /* White background for room cards */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            padding: 20px; /* Ensure padding inside the card */
+        }
+
+        .rooms .text-2xl {
+            font-size: 1.5rem; /* Font size for room names */
+            color: #333; /* Darker text color */
+            margin-bottom: 20px; /* Space between the room name and button */
+        }
+
+        .rooms .px-5 {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .rooms .py-3 {
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
+
+        .rooms .bg-teal-600 {
+            background-color: #009688; /* Teal color for the button */
+        }
+
+        .rooms .hover\:bg-teal-700:hover {
+            background-color: #00796b; /* Darker teal on hover */
+        }
+
+        .rooms .rounded-xl {
+            border-radius: 8px; /* Consistent rounded corners */
+        }
+
+        .rooms .text-white {
+            color: white; /* White text color */
+        }
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="" class="logo"><span>v</span>Collaborate</a>
+        <nav class="navbar">
+            <a href="#" class="">My Projects</a>
+            <a href="#">Start Project</a>
+            <a href="#">Join Projects</a>
+            <a href="">Webinars</a>
+        </nav>
+        <a href="" class="connect">Connect+</a>
+        <nav class="navend">
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn2"><a class="link">Logout</a></button>
+            </form>
+        </nav>
+    </header>
+    <div class="rooms">
+        <div class="p-10 lg:p-20 text-center">
+            <h1 class="text-3xl lg:text-6xl text-teal">Rooms</h1>
+        </div>
+
+        <div class="w-full flex flex-wrap items-center">
+            {% for room in rooms %}
+                <div class="w-full lg:w-1/4 px-3 py-3">
+                    <div class="p-4 bg-white shadow rounded-xl text-center">
+                        <h2 class="mb-20 text-2xl font-semibold">{{ room.name }}</h2>
+                        <a href="{% url 'room' room.slug %}" class="px-5 py-3 block rounded-xl text-white bg-teal-600 hover:bg-teal-700">Join</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

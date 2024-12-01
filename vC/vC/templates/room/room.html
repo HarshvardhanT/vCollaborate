@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>    
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <style>
+        .room{
+            margin-top: 250px;
+        }
+    </style>
+    <header class="header">
+        <a href="" class="logo"><span>v</span>Collaborate</a>
+        <nav class="navbar">
+            <a href="#" class="">My Projects</a>
+            <a href="#">Start Project</a>
+            <a href="#">Join Projects</a>
+            <a href="">Webinars</a>
+        </nav>
+        <a href="" class="connect">Connect+</a>
+        <nav class="navend">
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn2"><a class="link">Logout</a></button>
+            </form>
+        </nav>
+    </header>
+    
+    <main class="room">
+        <section class="room-header p-10 lg:p-20 text-center">
+            <h1 class="text-3xl lg:text-6xl text-teal-700">{{ room.name }}</h1>
+        </section>
+
+        <section class="chat-box lg:w-2/4 mx-4 lg:mx-auto p-4 bg-white rounded-xl shadow-md">
+            <div class="chat-messages space-y-4" id="chat-messages">
+                {% for m in messages %}
+                    <div class="message">
+                        <b>{{ m.user.username }}</b>: {{ m.content }}
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="message-form lg:w-2/4 mt-6 mx-4 lg:mx-auto p-4 bg-white rounded-xl shadow-md">
+            <form method="post" action="." class="flex items-center">
+                {% csrf_token %}
+                <input type="text" name="content" class="flex-1 mr-3 p-2 border border-gray-300 rounded-lg" placeholder="Your message..." id="chat-message-input">
+                <button 
+                    class="px-5 py-2 rounded-lg text-white bg-teal-600 hover:bg-teal-700"
+                    id="chat-message-submit"
+                >Send</button>
+            </form>
+        </section>
+    </main>
+    {{ room.slug|json_script:"json-roomname" }}
+    {{ request.user.username|json_script:"json-username" }}
+
+    <script>
+        const roomName = JSON.parse(document.getElementById('json-roomname').textContent);
+        const userName = JSON.parse(document.getElementById('json-username').textContent);
+        const chatSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/'
+            + roomName
+            + '/'
+        );
+
+        chatSocket.onclose = function(e) {
+            console.log('onclose')
+        }
+
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+
+            if (data.message) {
+                document.querySelector('#chat-messages').innerHTML += ('<b>' + data.username + '</b>: ' + data.message + '<br>');
+            } else {
+                alert('The message was empty!')
+            }
+
+            scrollToBottom();
+        };
+
+        document.querySelector('#chat-message-input').focus();
+        document.querySelector('#chat-message-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {
+                document.querySelector('#chat-message-submit').click();
+            }
+        };
+
+        document.querySelector('#chat-message-submit').onclick = function(e) {
+            e.preventDefault()
+
+            const messageInputDom = document.querySelector('#chat-message-input');
+            const message = messageInputDom.value;
+
+            console.log({
+                'message': message,
+                'username': userName,
+                'room': roomName
+            })
+
+            chatSocket.send(JSON.stringify({
+                'message': message,
+                'username': userName,
+                'room': roomName
+            }));
+
+            messageInputDom.value = '';
+
+            return false
+        };
+
+        /**
+        * A function for finding the messages element, and scroll to the bottom of it.
+        */
+        function scrollToBottom() {
+            let objDiv = document.getElementById("chat-messages");
+            objDiv.scrollTop = objDiv.scrollHeight;
+        }
+
+        // Add this below the function to trigger the scroll on load.
+        scrollToBottom();
+    </script>
+</body>
+</html>

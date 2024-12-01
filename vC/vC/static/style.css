@@ -1,0 +1,287 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    list-style: none;
+}
+
+.header {
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    padding: 20px 12%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    height: 120px;
+}
+
+.logo {
+    font-size: 25px;
+    color: white;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.logo:hover {
+    color: orangered;
+    text-shadow: 0 0 25px orangered, 0 0 50px orangered;
+    transform: scale(1.1);
+}
+
+span {
+    color: orangered;
+}
+
+.navbar a {
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 20px;
+    border-bottom: 3px solid transparent;
+    transition: .3s ease;
+}
+
+.navbar a:hover,
+.navbar a:active {
+    color: orangered;
+    border-bottom: solid orangered 3px;
+}
+
+.connect {
+    font-size: 16px;
+    color: black;
+    padding: 10px 20px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    background-color: white;
+    letter-spacing: 1px;
+    transition: .3s ease;
+}
+
+.connect:hover {
+    background-color: orangered;
+    color: white;
+    box-shadow: 0 0 25px orangered;
+}
+
+.home {
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgb(241, 241, 241);
+    display: flex;
+    align-items: center;
+    gap: 7em;
+    padding: 30px 12% 0;
+}
+
+.home-content {
+    max-width: 800px;
+}
+
+.home-content h3 {
+    font-size: 42px;
+}
+
+.home-content h1 {
+    font-size: 62px;
+    line-height: 1.2;
+}
+
+.home-content p {
+    font-size: 18px;
+    margin: 25px 0 30px;
+}
+
+.btn-box {
+    width: 345px;
+    display: flex;
+    gap: 2em;
+}
+
+.btn1 {
+    color: white;
+    background-color: black;
+    padding: 15px 28px;
+    border: 2px solid transparent;
+    font-size: 18px;
+    border-radius: 8px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    transition: .3s ease;
+    cursor: pointer;
+}
+
+.btn1:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+}
+
+.btn2 {
+    color: black;
+    background-color: orangered;
+    padding: 15px 28px;
+    border: 2px solid black;
+    font-size: 18px;
+    border-radius: 8px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    transition: .3s ease;
+    cursor: pointer;
+}
+
+.btn2:hover {
+    color: orangered;
+    background-color: white;
+}
+
+.img-box img {
+    border-radius: 50%;
+    width: 550px;
+    object-fit: cover;
+    height: 650px;
+}
+
+.about {
+    display: flex;
+    padding: 12% 8%;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    gap: 10em;
+}
+
+.about-img img {
+    position: relative;
+    width: 550px;
+    height: 650px;
+    box-shadow: 0 0 25px orangered, 0 0 50px orangered;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.about-content h2 {
+    text-align: left;
+    color: white;
+    font-size: 42px;
+}
+
+.about-content h3 {
+    font-size: 62px;
+    color: white;
+}
+
+.about-content p {
+    color: white;
+    margin: 2em 0 3em;
+    font-size: 20px;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: orangered;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 50px;
+}
+
+.profile-dropdown {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.profile-avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    vertical-align: middle;
+}
+
+.profile-dropdown span {
+    margin-left: 10px;
+    color: white;
+    font-size: 22px;
+    font-weight: 500;
+    vertical-align: middle;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%; /* Positioning it below the username */
+    background-color: white;
+    color: black;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    width: 200px;
+    padding: 10px 0;
+    z-index: 20;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f1f1f1;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"]:checked ~ .dropdown-menu {
+    display: block;
+}
+
+.expand-arrow{
+    height: 18px;
+    vertical-align: middle;
+}
+.profile-dropdown span:hover{
+    color: orangered;
+}
+
+.navend a{
+    font-size: 18px;
+    color: white;
+    font-family: Poppins;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 20px;
+    border-bottom: 3px solid transparent;
+    transition: .3 ease;
+    margin-bottom: 0%;
+    align-items: end;
+}
+.navend a:hover,
+.navend a:active{
+    color: orangered;
+    border-bottom: solid orangered 3px;
+}

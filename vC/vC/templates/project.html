@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>    
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    
+    <header class="header">
+        <a href="" class="logo"><span>v</span>Collaborate</a>
+        <nav class="navbar">
+            <a href="#" class="">My Projects</a>
+            <a href="#">Start Project</a>
+            <a href="#">Join Projects</a>
+            <a href="">Webinars</a>
+        </nav>
+        <a href="" class="connect">Connect+</a>
+        <nav class="navend">
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn2"><a class="link">Logout</a></button>
+            </form>
+            
+        </nav>
+        
+    </header>
+    <section class="home">
+        <div class="home-content">
+            <h3>Hi</h3>
+            <h1>Welcome <span>to <br></span>vCollaborator</h1>
+            <p>
+                
+            </p>
+
+            <div class="btn-box">
+                <button class="btn1">Create New Room</button>
+                <button class="btn2"><a class="link" href="/rooms/">Rooms</a></button>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

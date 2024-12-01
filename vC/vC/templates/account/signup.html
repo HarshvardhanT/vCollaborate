@@ -1,0 +1,158 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <title>{% trans "Sign Up" %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        /* Form container styles */
+        .new{
+            color: teal;
+        }
+        form {
+            background: white;
+            padding: 10rem;
+            border-radius: 1rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Label styles */
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+            width: 100px;
+        }
+
+        /* Input styles */
+        input[type="text"],
+        input[type="password"] {
+            width: 300px;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            box-sizing: border-box;
+            font-size: 1rem;
+            margin-top: 0.25rem;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: teal;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 128, 128, 0.2);
+        }
+
+        /* Error message styles */
+        .mb-5 {
+            margin-bottom: 1.25rem;
+        }
+
+        .bg-red-300 {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #f5c6cb;
+        }
+
+        .text-white {
+            color: teal;
+        }
+
+        /* Submit button styles */
+        button {
+            background-color: #004d40;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #00695c;
+        }
+
+        /* Text muted styles */
+        .text-muted {
+            color: #6c757d;
+        }
+
+        /* Link styles */
+        a {
+            color: teal;
+            text-decoration: none;
+        }
+
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="{% url 'homepage' %}" class="logo"><span>v</span>Collaborate</a>
+        <nav class="navbar">
+            <a href="#" class=>My Projects</a>
+            <a href="#">Start Project</a>
+            <a href="#">Join Projects</a>
+            <a href="">Webinars</a>
+        </nav>
+        <a href="" class="connect">Connect+</a>
+        <nav class="navend">
+            <a href="">Login</a>
+            <a href="">Sign Up</a>
+        </nav>
+    </header>
+
+    <form method="post" action="" class="lg:w-1/4 px-4 mx-auto">
+        {% csrf_token %}
+        <div class="new">
+            <h1>Sign Up</h1>
+        </div>
+
+        <div class="mb-5">
+            <label class="text-white">Username</label>
+            <input type="text" name="username" class="w-full mt-2 px-4 py-2 rounded-xl">
+        </div>
+
+        <div class="mb-5">
+            <label class="text-white">Password</label>
+            <input type="password" name="password1" class="w-full mt-2 px-4 py-2 rounded-xl">
+        </div>
+
+        <div class="mb-5">
+            <label class="text-white">Repeat password</label>
+            <input type="password" name="password2" class="w-full mt-2 px-4 py-2 rounded-xl">
+        </div>
+
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %} 
+                    <div class="mb-5 p-4 rounded-xl bg-red-300 text-white">
+                        <p>{{ error|escape }}</p>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+
+        <button class="px-5 py-3 rounded-xl text-white bg-teal-800 hover:bg-teal-700">Submit</button>
+        
+    <div class="text-center mt-3">
+        <p class="text-muted form-footer">{% trans "Already have an account?" %} <a href="">{% trans "Log In" %}</a></p>
+    </div>
+    </form>
+
+</body>
+</html>

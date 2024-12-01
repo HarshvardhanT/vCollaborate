@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>    
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    
+    <header class="header">
+        <a href="" class="logo"><span>v</span>Collaborate</a>
+        <nav class="navbar">
+            <a href="#" class="">My Projects</a>
+            <a href="#">Start Project</a>
+            <a href="#">Join Projects</a>
+            <a href="">Webinars</a>
+        </nav>
+        <a href="" class="connect">Connect+</a>
+        <nav class="navend">
+            <a href="{% url "login" %}">Login</a>
+            <a href="{% url "signup" %}">Sign Up</a>
+        </nav>
+        
+    </header>
+    <section class="home">
+        <div class="home-content">
+            <h3>Hi</h3>
+            <h1>Welcome <span>to <br></span>vCollaborator</h1>
+            <p>
+                
+            </p>
+
+            <div class="btn-box">
+                <button class="btn1">Login</button>
+                <button class="btn2"><a class="link" href="">Sign Up</a></button>
+            </div>
+        </div>
+        <div class="img-box">
+            <img src="" alt="">
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="about-img">
+            <img src="" alt="">
+        </div>
+        <div class="about-content">
+            <h2 class="heading">We <span>Collaborate</span></h2>
+            <h3>We connect<span> YOU DEVELOP</span></h3>
+            <p>
+               Join Today<br>
+                Be part of a growing community of <span>1000+</span> Users<br>
+            <br>
+            </p>
+            <a href="" class="btn2">Sign Up</a>
+        </div>
+    </section>
+</body>
+</html>
